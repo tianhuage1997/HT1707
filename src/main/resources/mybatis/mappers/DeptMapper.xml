@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证接口和映射文件一一对应  -->
+<mapper namespace="cn.tarena.ht.mapper.DeptMapper">
+
+    <!--查询部门的全部列表信息     要求全部的sql语句统统小写-->
+    <select id="findAllDept" resultMap="deptRM">
+       select * from
+    dept_p d
+           left join
+    (select dept_id as p_id,dept_name as p_name from dept_p) p
+		       on d.parent_id = p.p_id
+		order by dept_id
+	</select>
+
+
+
+    <!-- 修改部门表的state状态，变更为0-->
+    <update id="updateStatusByDeptId"  >
+              update  dept_p set state = 0 where dept_id in
+              <foreach collection="deptIds"  item="deptId" index="index" open="(" separator="," close=")">
+                    #{deptId}
+              </foreach>
+    </update>
+
+     <!-- 修改部门表的state状态 ,变更为1-->
+    <update id="updateStartByDeptId" >
+              update  dept_p set state = 1 where dept_id  in
+              <foreach collection="deptIds" item="deptId" index="index" open="(" separator="," close=")">
+                          #{deptId}
+              </foreach>
+    </update>
+
+    <!-- 删除部门表的部门信息，基于deptId数组去删除-->
+    <delete id="deleteDeptByDeptId">
+           delete  from  dept_p where  dept_id in
+           <foreach collection="deptIds"  item="deptId" index="index" open="(" separator="," close=")">
+                    #{deptId}
+           </foreach>
+    </delete>
+
+    <!-- 保存部门信息-->
+    <insert id="saveDept">
+          INSERT INTO dept_p (dept_id,parent_id,dept_name,state,create_time,update_time) VALUES(
+            #{deptId},
+            #{parentId.deptId},
+            #{deptName},
+            #{state},
+            #{createTime},
+            #{updateTime}
+            )
+    </insert>
+
+    <!-- 基于deptId去查询部门表-->
+    <select id="findByDeptId"    resultMap="deptRM">
+         select * from
+    dept_p d
+           left join
+    (select dept_id as p_id,dept_name as p_name from dept_p) p
+           on d.parent_id = p.p_id
+    where dept_id = #{deptId}
+    </select>
+
+    <!-- -->
+    <update id="updateDept">
+          update  dept_p set  dept_name = #{deptName}, parent_id=#{parentId.deptId},state=#{state} where  dept_id = #{deptId}
+    </update>
+    <!-- 映射关系保存 -->
+
+    <!-- 映射dept实体类 -->
+    <resultMap id="deptRM" type="cn.tarena.ht.pojo.Dept"  autoMapping="true">
+        <id  column="dept_id" property="deptId"></id>
+        <!-- 一对一映射-->
+        <association property="parentId"  javaType="Dept">
+            <id column="parent_id" property="deptId"></id>
+            <id column="p_name" property="deptName"></id>
+        </association>
+    </resultMap>
+</mapper>
