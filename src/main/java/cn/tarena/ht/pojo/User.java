@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable {
-
+    /* user与dept是一对一关系 */
+    private Dept dept;
+    /* user与userinfo是一对一关系 */
+    private  UserInfo userInfo;
     /* 用户id */
     private  String userId;
     /* 部门id */
@@ -26,7 +29,21 @@ public class User implements Serializable {
     /* 修改时间 */
     private  Date   updateTime;
 
+    public Dept getDept() {
+        return dept;
+    }
 
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
     public String getUserId() {
         return userId;
     }

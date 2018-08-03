@@ -12,7 +12,7 @@ public class UserInfo   implements Serializable {
     /*  身份证号 */
     private	String	cardNo	;
     /*  直属领导 */
-    private	String	managerId	;
+    private	UserInfo	managerId	;
     /*  入职时间 */
     private Date joinDate	;
     /*  薪水 */
@@ -66,11 +66,11 @@ public class UserInfo   implements Serializable {
         this.cardNo = cardNo;
     }
 
-    public String getManagerId() {
+    public UserInfo getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(String managerId) {
+    public void setManagerId(UserInfo managerId) {
         this.managerId = managerId;
     }
 
