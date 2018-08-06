@@ -58,7 +58,7 @@
 		<td>${status.index+1}</td>
 		<td>${u.username}</td>
 		<td>${u.userInfo.name}</td>
-		<td>${u.userInfo.manager.name}</td>
+		<td>${u.userInfo.managerId.name}</td>
 		<td>${u.dept.deptName}</td>
 		<td> <fmt:formatDate value="${u.userInfo.joinDate}" pattern="yyyy-MM-dd"/></td>
 		<td>${u.userInfo.salary}</td>
