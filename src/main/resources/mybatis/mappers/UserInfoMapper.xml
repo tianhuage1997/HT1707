@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证接口和映射文件一一对应  -->
+<mapper namespace="cn.tarena.ht.mapper.UserInfoMapper">
+
+
+    <!-- 查询上级列表信息 -->
+    <select id="findAllUserInfo"  resultType="cn.tarena.ht.pojo.UserInfo">
+            select  * from user_info_p
+    </select>
+
+</mapper>
