@@ -3,31 +3,19 @@ package cn.tarena.ht.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User   extends BaseEntity  {
     /* user与dept是一对一关系 */
     private Dept dept;
     /* user与userinfo是一对一关系 */
     private  UserInfo userInfo;
     /* 用户id */
     private  String userId;
-    /* 部门id */
-    private  String deptId;
     /*用户名 */
     private  String username;
     /* 用户密码 */
     private  String password;
     /* 状态 */
     private  Integer state;
-    /* 创建人 */
-    private  String   createBy;
-    /* 创建部门 */
-    private  String   createDept;
-    /* 创建时间 */
-    private  Date   createTime;
-    /* 修改人 */
-    private  String updateBy;
-    /* 修改时间 */
-    private  Date   updateTime;
 
     public Dept getDept() {
         return dept;
@@ -52,13 +40,6 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
-    public String getDeptId() {
-        return deptId;
-    }
-
-    public void setDeptId(String deptId) {
-        this.deptId = deptId;
-    }
 
     public String getUsername() {
         return username;
@@ -84,45 +65,6 @@ public class User implements Serializable {
         this.state = state;
     }
 
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
-    }
-
-    public String getCreateDept() {
-        return createDept;
-    }
-
-    public void setCreateDept(String createDept) {
-        this.createDept = createDept;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
 
 

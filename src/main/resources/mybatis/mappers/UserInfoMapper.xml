@@ -11,4 +11,67 @@
             select  * from user_info_p
     </select>
 
+    <!-- 入库userInfo用户拓展信息表 -->
+    <insert id="saveUserInfo"   parameterType="cn.tarena.ht.pojo.UserInfo">
+          insert  into  user_info_p values (
+          #{userInfoId},
+          #{name},
+          #{cardNo},
+          #{managerId.userInfoId},
+          #{joinDate},
+          #{salary},
+          #{birthday},
+          #{gender},
+          #{station},
+          #{telephone},
+          #{userLevel},
+          #{remark},
+          #{orderNo},
+          #{createBy,jdbcType=VARCHAR},
+          #{createDept,jdbcType=VARCHAR},
+          #{createTime,jdbcType=DATE},
+          #{updateBy,jdbcType=VARCHAR},
+          #{updateTime,jdbcType=DATE}
+          )
+    </insert>
+
+
+    <!-- 修改用户拓展表信息userinfo -->
+    <update id="updateUserInfo"  parameterType="cn.tarena.ht.pojo.UserInfo">
+        update  user_info_p
+        <set>
+            birthday = #{birthday},
+            card_no = #{cardNo},
+            gender = #{gender},
+            join_date = #{joinDate},
+            manager_id = #{managerId.userInfoId},
+            name = #{name},
+            order_no = #{orderNo},
+            remark = #{remark},
+            salary = #{salary},
+            station = #{station},
+            telephone = #{telephone},
+            user_level = #{userLevel},
+            <include refid="userUpdate"/>
+        </set>
+        where  user_info_id = #{userInfoId}
+    </update>
+
+    <delete id="deleteUserInfo">
+          delete  from  user_info_p
+          where  user_info_id in
+          <foreach collection="userIds" item="userId" index="index" open="(" separator="," close=")">
+                  #{userId}
+          </foreach>
+    </delete>
+
+    <!--复用SQL信息 -->
+    <sql id="userUpdate">
+        <if test="createBy !=null">create_by = #{createBy,jdbcType=VARCHAR},</if>
+        <if test="createDept !=null">create_dept = #{createDept,jdbcType=VARCHAR},</if>
+        <if test="createTime !=null">create_time = #{createTime},</if>
+        <if test="updateBy !=null">update_by = #{updateBy,jdbcType=VARCHAR},</if>
+        <if test="updateTime !=null">update_time = #{updateTime}</if>
+    </sql>
+
 </mapper>
