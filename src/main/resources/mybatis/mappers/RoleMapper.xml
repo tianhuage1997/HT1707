@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--保证接口和映射文件一一对应  -->
+<mapper namespace="cn.tarena.ht.mapper.RoleMapper">
+        
+        <insert id="saveRole">
+            insert  into  role_p
+            (role_id,name,remarks,order_no,create_by,create_dept,create_time,update_by,update_time)
+            values (
+            #{roleId},
+            #{name},
+            #{remarks},
+            #{orderNo},
+            #{createBy,jdbcType=VARCHAR},
+			#{createDept,jdbcType=VARCHAR},
+			#{createTime,jdbcType=DATE},
+			#{updateBy,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=DATE}
+            )
+        </insert>
+
+</mapper>
