@@ -44,5 +44,9 @@ public class Role   extends  BaseEntity{
     }
 
 
+    public String getId(){
+         return roleId;
+    }
+
 
 }

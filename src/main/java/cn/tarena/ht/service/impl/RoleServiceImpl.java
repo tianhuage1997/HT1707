@@ -29,4 +29,13 @@ public class RoleServiceImpl implements RoleService {
         Integer i = roleMapper.saveRole(role);
         return null;
     }
+
+    public void saveUserRole(String userId, String[] roleIds) {
+        //新增用户角色关联表
+        for (String roleId:roleIds){
+            roleMapper.saveRoleUser(userId,roleId);
+        }
+
+
+    }
 }
